@@ -63,11 +63,17 @@ class BhaskaraII_ICTS(Scene):
 
         t1 = Angle(lineb1, line1, radius=0.4,color=icts_grey)
         t2 = Angle(line1, linea2, radius=0.4,color=icts_highlight,quadrant=(-1,1))
-        t1_label = MathTex(r"90^{\circ}-\theta",font_size=24,color=icts_grey).next_to(t1,UR,buff=0)
-        t2_label = MathTex(r"\theta",font_size=24,color=icts_highlight).next_to(t2,DOWN,buff=0.1)
+        t3 = Angle(linea2,line4,radius=0.4,color=icts_grey,quadrant=(1,-1))
+        t4 = Angle(line4,lineb3,radius=0.4,color=icts_highlight)
+        t5 = Angle(lineb3,line3,radius=0.4,color=icts_grey)
+        t6 = Angle(line3,linea4,radius=0.4,color=icts_highlight,quadrant=(-1,1))
+        t7 = Angle(linea4,line2,radius=0.4,color=icts_grey,quadrant=(1,-1))
+        t8 = Angle(line2,lineb1,radius=0.4,color=icts_highlight)
+        t1_label = MathTex(r"90^{\circ}-\theta",font_size=28,color=icts_grey).next_to(t1,UR,buff=0)
+        t2_label = MathTex(r"\theta",font_size=28,color=icts_highlight).next_to(t2,DOWN,buff=0.1)
 
         # self.play(FadeIn(triangle),FadeIn(triangle2),FadeIn(triangle3),FadeIn(triangle4))
-        self.add(triangle,triangle2,triangle3,triangle4,rightangles1,rightangles2,rightangles4,rightangles3,line1,line2,line3,line4,c_label,c_label2,c_label3,c_label4,linea1,a_label,a_label2,a_label3,a_label4,b_label,lineb2,b_label2,lineb3,b_label3,lineb4,b_label4,rightangles11,t2,t2_label)
+        self.add(triangle,triangle2,triangle3,triangle4,rightangles1,rightangles2,rightangles4,rightangles3,line1,line2,line3,line4,c_label,c_label2,c_label3,c_label4,linea1,a_label,a_label2,a_label3,a_label4,b_label,lineb2,b_label2,lineb3,b_label3,lineb4,b_label4,rightangles11,t2,t2_label,t1,t1_label,t3,t4,t5,t6,t7,t8)
         self.wait(2)
 
 
