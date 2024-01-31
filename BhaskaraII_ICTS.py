@@ -85,19 +85,35 @@ class BhaskaraII_ICTS(Scene):
         self.play(FadeIn(rightangles3))
         self.play(FadeIn(rightangles4))
         self.play(FadeOut(rightangles1),FadeOut(rightangles2),FadeOut(rightangles4),FadeOut(rightangles3),ReplacementTransform(c_label,csquare),ReplacementTransform(c_label2,csquare),ReplacementTransform(c_label3,csquare),ReplacementTransform(c_label4,csquare),ReplacementTransform(line1,csquare),ReplacementTransform(line2,csquare),ReplacementTransform(line3,csquare),ReplacementTransform(line4,csquare))
+        whole = VGroup(triangle,triangle2,triangle3,triangle4,
+                       rightangles1,rightangles2,rightangles4,rightangles3,
+                       line1,line2,line3,line4,
+                       c_label,c_label2,c_label3,c_label4,
+                       linea1,linea2,linea3,linea4,
+                       a_label,a_label2,a_label3,a_label4,
+                       b_label,b_label2,b_label3,b_label4,
+                       lineb2,lineb3,lineb4,lineb1,
+                       rightangles11,rightangles22,rightangles33,rightangles44,
+                       t2,t1,t3,t4,t5,t6,t7,t8,
+                       t2_label,t1_label)
+        tr = VGroup(triangle4,rightangles44,lineb2,b_label2)
         self.add(csquare)
+        self.play(FadeIn(rightangles11))
+        self.play(FadeIn(t1), FadeIn(t1_label), FadeIn(t2), FadeIn(t2_label))
+        # self.play(FadeOut(b_label),FadeOut(a_label2))
+        self.play(FadeOut(t1_label),FadeOut(t2_label))
         self.play(Create(linea2))
         self.play(FadeIn(a_label2))
         self.play(Create(lineb1))
         self.play(FadeIn(b_label))
-        self.play(FadeIn(rightangles11))
-        self.play(FadeOut(b_label),FadeOut(a_label2))
-        self.play(FadeIn(t1), FadeIn(t1_label), FadeIn(t2), FadeIn(t2_label))
         self.play(Create(linea1),FadeIn(a_label),Create(lineb4),FadeIn(b_label4),FadeIn(rightangles22),FadeIn(t7),FadeIn(t8))
         #3
-        self.play(FadeOut(linea1),FadeOut(a_label),FadeOut(lineb4),FadeOut(b_label4),FadeOut(rightangles22),FadeOut(t7),FadeOut(t8),Create(linea4),FadeIn(t5),FadeIn(t6))
+        self.play(FadeOut(linea1),FadeOut(a_label),FadeOut(lineb4),FadeOut(b_label4),FadeOut(rightangles22),FadeOut(t7),FadeOut(t8),Create(linea4),FadeIn(a_label4),Create(lineb3),FadeIn(b_label3),FadeIn(rightangles33),FadeIn(t5),FadeIn(t6))
         #4
-        self.play(Create(linea3),FadeIn(t3),FadeIn(t4))
+        self.play(FadeOut(linea4),FadeOut(a_label4),FadeOut(lineb3),FadeOut(b_label3),FadeOut(rightangles33),FadeOut(t5),FadeOut(t6),
+            Create(linea3),FadeIn(a_label3),Create(lineb2),FadeIn(b_label2),FadeIn(rightangles44),FadeIn(t3),FadeIn(t4))
+        self.play(whole.animate.shift(UL*a_length))
+        self.play(FadeOut(t3),FadeOut(t4),tr.animate.shift(DOWN*b_length+LEFT*a_length))
         self.wait(1)
         # self.add(triangle,triangle2,triangle3,triangle4,rightangles1,rightangles2,rightangles4,rightangles3,line1,line2,line3,line4,c_label,c_label2,c_label3,c_label4,linea1,a_label,a_label2,a_label3,a_label4,b_label,lineb2,b_label2,lineb3,b_label3,lineb4,b_label4,rightangles11,t2,t2_label,t1,t1_label,t3,t4,t5,t6,t7,t8)
         # self.wait(2)
