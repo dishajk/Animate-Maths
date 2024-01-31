@@ -19,7 +19,8 @@ class BhaskaraII_ICTS(Scene):
         triangle2 = triangle.copy().rotate(PI/2).shift(DOWN*(a_length+b_length)/2+RIGHT*(b_length-a_length)/2)
         triangle3 = triangle2.copy().rotate(PI/2).shift(UP*(b_length-a_length)/2+RIGHT*(a_length+b_length)/2)
         triangle4 = triangle3.copy().rotate(PI/2).shift(UP*(a_length+b_length)/2+LEFT*(b_length-a_length)/2)
-
+         
+        square_In = Polygon(B,B+UP*(b_length-a_length),B+UP*(b_length-a_length)+RIGHT*(b_length-a_length),B+RIGHT*(b_length-a_length),fill_opacity=0.2,color=icts_grey,stroke_width=0)
         line1 = Line(A,C,color=BLACK)
         line2 = line1.copy().rotate(-PI/2,about_point=A)
         line3 = line2.copy().rotate(-PI/2,about_point=line2.get_end())
@@ -74,7 +75,7 @@ class BhaskaraII_ICTS(Scene):
 
         csquare = Tex("$c^2$",color=BLACK).shift(DOWN*2.9 + LEFT)
 
-        self.play(FadeIn(triangle),FadeIn(triangle2),FadeIn(triangle3),FadeIn(triangle4))
+        self.play(FadeIn(triangle),FadeIn(triangle2),FadeIn(triangle3),FadeIn(triangle4),FadeIn(square_In))
         self.wait(1)
         self.play(FadeIn(line1),FadeIn(c_label))
         self.play(FadeIn(line2),FadeIn(c_label2))
@@ -86,18 +87,19 @@ class BhaskaraII_ICTS(Scene):
         self.play(FadeIn(rightangles4))
         self.play(FadeOut(rightangles1),FadeOut(rightangles2),FadeOut(rightangles4),FadeOut(rightangles3),ReplacementTransform(c_label,csquare),ReplacementTransform(c_label2,csquare),ReplacementTransform(c_label3,csquare),ReplacementTransform(c_label4,csquare),ReplacementTransform(line1,csquare),ReplacementTransform(line2,csquare),ReplacementTransform(line3,csquare),ReplacementTransform(line4,csquare))
         whole = VGroup(triangle,triangle2,triangle3,triangle4,
-                       rightangles1,rightangles2,rightangles4,rightangles3,
-                       line1,line2,line3,line4,
-                       c_label,c_label2,c_label3,c_label4,
+                       square_In,
+                    #    rightangles1,rightangles2,rightangles4,rightangles3,
                        linea1,linea2,linea3,linea4,
                        a_label,a_label2,a_label3,a_label4,
                        b_label,b_label2,b_label3,b_label4,
-                       lineb2,lineb3,lineb4,lineb1,
-                       rightangles11,rightangles22,rightangles33,rightangles44,
+                       lineb2,lineb3,lineb1,
+                       rightangles11,rightangles44,
                        t2,t1,t3,t4,t5,t6,t7,t8,
-                       t2_label,t1_label)
-        tr = VGroup(triangle4,rightangles44,lineb2,b_label2)
-        self.add(csquare)
+                    #    t2_label,t1_label
+                       )
+        tr = VGroup(triangle4,rightangles44,lineb2,b_label2,t3,t4)
+        tr2 = VGroup(triangle,rightangles11,linea2,a_label2,t1,t2)
+        # self.add(csquare)
         self.play(FadeIn(rightangles11))
         self.play(FadeIn(t1), FadeIn(t1_label), FadeIn(t2), FadeIn(t2_label))
         # self.play(FadeOut(b_label),FadeOut(a_label2))
@@ -112,8 +114,9 @@ class BhaskaraII_ICTS(Scene):
         #4
         self.play(FadeOut(linea4),FadeOut(a_label4),FadeOut(lineb3),FadeOut(b_label3),FadeOut(rightangles33),FadeOut(t5),FadeOut(t6),
             Create(linea3),FadeIn(a_label3),Create(lineb2),FadeIn(b_label2),FadeIn(rightangles44),FadeIn(t3),FadeIn(t4))
-        self.play(whole.animate.shift(UL*a_length))
-        self.play(FadeOut(t3),FadeOut(t4),tr.animate.shift(DOWN*b_length+LEFT*a_length))
+        self.play(whole.animate.shift(UL*a_length/2))
+        self.play(tr.animate.shift(DOWN*b_length+LEFT*a_length))
+        self.play(tr2.animate.shift(RIGHT*b_length+DOWN*a_length))
         self.wait(1)
         # self.add(triangle,triangle2,triangle3,triangle4,rightangles1,rightangles2,rightangles4,rightangles3,line1,line2,line3,line4,c_label,c_label2,c_label3,c_label4,linea1,a_label,a_label2,a_label3,a_label4,b_label,lineb2,b_label2,lineb3,b_label3,lineb4,b_label4,rightangles11,t2,t2_label,t1,t1_label,t3,t4,t5,t6,t7,t8)
         # self.wait(2)
