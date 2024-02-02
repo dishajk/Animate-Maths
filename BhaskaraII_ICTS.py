@@ -74,7 +74,14 @@ class BhaskaraII_ICTS(Scene):
         t2_label = MathTex(r"\theta",font_size=28,color=icts_highlight).next_to(t2,DOWN,buff=0.1)
 
         csquare = Tex("$c^2$",color=BLACK).shift(DOWN*2.9 + LEFT)
-
+        equals = Tex("$=$",color=BLACK).next_to(csquare)
+        asquare = Tex("$a^2$",color=BLACK).next_to(equals)
+        plus = Tex("$+$",color=BLACK).next_to(asquare)
+        bsquare = Tex("$b^2$",color=BLACK).next_to(plus)
+        ictstifr = Tex("ICTS - TIFR",color=BLACK).shift(DOWN*2.9)
+        pythogoras = VGroup(csquare,equals,asquare,plus,bsquare)
+        squareA = Polygon(A,A+RIGHT*b_length,A+RIGHT*b_length+UP*b_length,A+UP*b_length, color=icts_highlight,stroke_width=0,fill_opacity=0.5).shift(DOWN*a_length/2+RIGHT*a_length) 
+        squareB = Polygon(A,A+LEFT*a_length,A+UP*a_length+LEFT*a_length,A+UP*a_length,color=icts_grey,stroke_width=0,fill_opacity=0.5).shift(DOWN*a_length/2+RIGHT*a_length)
         self.play(FadeIn(triangle),FadeIn(triangle2),FadeIn(triangle3),FadeIn(triangle4),FadeIn(square_In))
         self.wait(1)
         self.play(FadeIn(line1),FadeIn(c_label))
@@ -85,9 +92,11 @@ class BhaskaraII_ICTS(Scene):
         self.play(FadeIn(line4),FadeIn(c_label4))
         self.play(FadeIn(rightangles3))
         self.play(FadeIn(rightangles4))
-        self.play(FadeOut(rightangles1),FadeOut(rightangles2),FadeOut(rightangles4),FadeOut(rightangles3),ReplacementTransform(c_label,csquare),ReplacementTransform(c_label2,csquare),ReplacementTransform(c_label3,csquare),ReplacementTransform(c_label4,csquare),ReplacementTransform(line1,csquare),ReplacementTransform(line2,csquare),ReplacementTransform(line3,csquare),ReplacementTransform(line4,csquare))
+        self.play(FadeOut(rightangles1),FadeOut(rightangles2),FadeOut(rightangles4),FadeOut(rightangles3),ReplacementTransform(c_label.copy(),csquare),ReplacementTransform(c_label2,csquare),ReplacementTransform(c_label3,csquare),ReplacementTransform(c_label4.copy(),csquare),ReplacementTransform(line1.copy(),csquare),ReplacementTransform(line2,csquare),ReplacementTransform(line3,csquare),ReplacementTransform(line4.copy(),csquare))
         whole = VGroup(triangle,triangle2,triangle3,triangle4,
                        square_In,
+                       line1,line4,
+                       c_label,c_label4,
                     #    rightangles1,rightangles2,rightangles4,rightangles3,
                        linea1,linea2,linea3,linea4,
                        a_label,a_label2,a_label3,a_label4,
@@ -97,8 +106,10 @@ class BhaskaraII_ICTS(Scene):
                        t2,t1,t3,t4,t5,t6,t7,t8,
                     #    t2_label,t1_label
                        )
-        tr = VGroup(triangle4,rightangles44,lineb2,b_label2,t3,t4)
-        tr2 = VGroup(triangle,rightangles11,linea2,a_label2,t1,t2)
+        tr = VGroup(rightangles44,lineb2,b_label2,t3,t4,line4,c_label4)
+        tr2 = VGroup(rightangles11,linea2,a_label2,t1,t2,line1,c_label)
+        labels = VGroup(linea1,a_label,lineb4,b_label4,rightangles22,t7,t8,linea4,a_label4,lineb3,b_label3,rightangles33,t5,t6,linea3,a_label3,b_label)
+
         # self.add(csquare)
         self.play(FadeIn(rightangles11))
         self.play(FadeIn(t1), FadeIn(t1_label), FadeIn(t2), FadeIn(t2_label))
@@ -108,15 +119,20 @@ class BhaskaraII_ICTS(Scene):
         self.play(FadeIn(a_label2))
         self.play(Create(lineb1))
         self.play(FadeIn(b_label))
+        
         self.play(Create(linea1),FadeIn(a_label),Create(lineb4),FadeIn(b_label4),FadeIn(rightangles22),FadeIn(t7),FadeIn(t8))
         #3
         self.play(FadeOut(linea1),FadeOut(a_label),FadeOut(lineb4),FadeOut(b_label4),FadeOut(rightangles22),FadeOut(t7),FadeOut(t8),Create(linea4),FadeIn(a_label4),Create(lineb3),FadeIn(b_label3),FadeIn(rightangles33),FadeIn(t5),FadeIn(t6))
         #4
         self.play(FadeOut(linea4),FadeOut(a_label4),FadeOut(lineb3),FadeOut(b_label3),FadeOut(rightangles33),FadeOut(t5),FadeOut(t6),
             Create(linea3),FadeIn(a_label3),Create(lineb2),FadeIn(b_label2),FadeIn(rightangles44),FadeIn(t3),FadeIn(t4))
-        self.play(whole.animate.shift(UL*a_length/2))
-        self.play(tr.animate.shift(DOWN*b_length+LEFT*a_length))
-        self.play(tr2.animate.shift(RIGHT*b_length+DOWN*a_length))
+        self.play(whole.animate.shift(UP*a_length/2))
+        self.play(triangle4.animate.shift(DOWN*b_length+LEFT*a_length),tr.animate.shift(DOWN*b_length+LEFT*a_length))
+        self.play(tr2.animate.shift(RIGHT*b_length+DOWN*a_length),triangle.animate.shift(RIGHT*b_length+DOWN*a_length))
+        self.play(Create(squareA),Create(squareB),FadeIn(equals))
+        self.play(ReplacementTransform(squareA,asquare),FadeIn(plus),ReplacementTransform(squareB,bsquare))
+        self.play(FadeOut(tr2),FadeOut(tr),FadeOut(labels),triangle4.animate.shift(UP*b_length+RIGHT*a_length),triangle.animate.shift(LEFT*b_length+UP*a_length))
+        self.play(ReplacementTransform(pythogoras,ictstifr))
         self.wait(1)
         # self.add(triangle,triangle2,triangle3,triangle4,rightangles1,rightangles2,rightangles4,rightangles3,line1,line2,line3,line4,c_label,c_label2,c_label3,c_label4,linea1,a_label,a_label2,a_label3,a_label4,b_label,lineb2,b_label2,lineb3,b_label3,lineb4,b_label4,rightangles11,t2,t2_label,t1,t1_label,t3,t4,t5,t6,t7,t8)
         # self.wait(2)
