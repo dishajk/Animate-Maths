@@ -2,25 +2,37 @@ from manim import *
 
 class BhaskaraII_ICTS(Scene):
     def construct(self):
-        white="#fafafa"
-        self.camera.background_color = white
-        icts_maroon = "#90403d"
-        icts_highlight="#F88826"
+
+# color
         icts_grey="#9BAFC5"
+        WHITE = "#fafafa"
+        ICTS_MAROON = "#90403d"
+        ICTS_HIGHLIGHT = "#F88826"
+        ICTS_GREY = "#9BAFC5"
+        self.camera.background_color = WHITE
+        
+# length
         a_length = 8/4
         b_length = 15/4  
 
+# points
         A = np.array([-(a_length+b_length)/2,-(b_length-a_length)/2,0])
         B = A + a_length*RIGHT
         C = B + b_length*UP
         mA = -A
 
-        triangle = Polygon(A,B,C,stroke_color=white,fill_color=icts_maroon,fill_opacity=1,stroke_width=2)
+# shapes
+        triangle = Polygon(A,B,C,stroke_color=WHITE,fill_color=ICTS_MAROON,fill_opacity=1,stroke_width=2)
+        square_In = Polygon(B,B+UP*(b_length-a_length),B+UP*(b_length-a_length)+RIGHT*(b_length-a_length),B+RIGHT*(b_length-a_length),fill_opacity=0.2,color=icts_grey,stroke_width=0)
+        squareA = Polygon(A,A+RIGHT*b_length,A+RIGHT*b_length+UP*b_length,A+UP*b_length, color=ICTS_HIGHLIGHT,stroke_width=0,fill_opacity=0.5).shift(DOWN*a_length/2+RIGHT*a_length) 
+        squareB = Polygon(A,A+LEFT*a_length,A+UP*a_length+LEFT*a_length,A+UP*a_length,color=icts_grey,stroke_width=0,fill_opacity=0.5).shift(DOWN*a_length/2+RIGHT*a_length)
+
+# lines
+        
         triangle2 = triangle.copy().rotate(PI/2).shift(DOWN*(a_length+b_length)/2+RIGHT*(b_length-a_length)/2)
         triangle3 = triangle2.copy().rotate(PI/2).shift(UP*(b_length-a_length)/2+RIGHT*(a_length+b_length)/2)
         triangle4 = triangle3.copy().rotate(PI/2).shift(UP*(a_length+b_length)/2+LEFT*(b_length-a_length)/2)
          
-        square_In = Polygon(B,B+UP*(b_length-a_length),B+UP*(b_length-a_length)+RIGHT*(b_length-a_length),B+RIGHT*(b_length-a_length),fill_opacity=0.2,color=icts_grey,stroke_width=0)
         line1 = Line(A,C,color=BLACK)
         line2 = line1.copy().rotate(-PI/2,about_point=A)
         line3 = line2.copy().rotate(-PI/2,about_point=line2.get_end())
@@ -39,14 +51,14 @@ class BhaskaraII_ICTS(Scene):
         rightangles3 = RightAngle(line4, line3,stroke_width=4)
         rightangles4 = RightAngle(line1, line4,stroke_width=4,quadrant=(-1,-1))
 
-        linea1 = Line(A,A+RIGHT*b_length,color=icts_highlight)
-        linea2 = Line(C,C+DOWN*b_length,color=icts_highlight)
-        linea3 = Line(mA,mA+LEFT*b_length,color=icts_highlight)
-        linea4 = Line(-C,-C+UP*b_length,color=icts_highlight)
-        a_label = Tex("$a$",color=icts_highlight).next_to(linea1.get_center(),DOWN)
-        a_label2 = Tex("$a$",color=icts_highlight).next_to(linea2.get_center(),LEFT)
-        a_label3 = Tex("$a$",color=icts_highlight).next_to(linea3.get_center(),UP)
-        a_label4 = Tex("$a$",color=icts_highlight).next_to(linea4.get_center(),RIGHT)
+        linea1 = Line(A,A+RIGHT*b_length,color=ICTS_HIGHLIGHT)
+        linea2 = Line(C,C+DOWN*b_length,color=ICTS_HIGHLIGHT)
+        linea3 = Line(mA,mA+LEFT*b_length,color=ICTS_HIGHLIGHT)
+        linea4 = Line(-C,-C+UP*b_length,color=ICTS_HIGHLIGHT)
+        a_label = Tex("$a$",color=ICTS_HIGHLIGHT).next_to(linea1.get_center(),DOWN)
+        a_label2 = Tex("$a$",color=ICTS_HIGHLIGHT).next_to(linea2.get_center(),LEFT)
+        a_label3 = Tex("$a$",color=ICTS_HIGHLIGHT).next_to(linea3.get_center(),UP)
+        a_label4 = Tex("$a$",color=ICTS_HIGHLIGHT).next_to(linea4.get_center(),RIGHT)
     
         lineb1 = Line(A,A+RIGHT*a_length,color=icts_grey)
         b_label = Tex("$b$", color=icts_grey).next_to(lineb1.get_center(),UP)
@@ -63,15 +75,15 @@ class BhaskaraII_ICTS(Scene):
         rightangles44 = RightAngle(lineb2,linea3,stroke_width=3,quadrant=(-1,-1))
 
         t1 = Angle(lineb1, line1, radius=0.4,color=icts_grey)
-        t2 = Angle(line1, linea2, radius=0.4,color=icts_highlight,quadrant=(-1,1))
+        t2 = Angle(line1, linea2, radius=0.4,color=ICTS_HIGHLIGHT,quadrant=(-1,1))
         t3 = Angle(linea2,line4,radius=0.4,color=icts_grey,quadrant=(1,-1))
-        t4 = Angle(line4,lineb3,radius=0.4,color=icts_highlight)
+        t4 = Angle(line4,lineb3,radius=0.4,color=ICTS_HIGHLIGHT)
         t5 = Angle(lineb3,line3,radius=0.4,color=icts_grey)
-        t6 = Angle(line3,linea4,radius=0.4,color=icts_highlight,quadrant=(-1,1))
+        t6 = Angle(line3,linea4,radius=0.4,color=ICTS_HIGHLIGHT,quadrant=(-1,1))
         t7 = Angle(linea4,line2,radius=0.4,color=icts_grey,quadrant=(1,-1))
-        t8 = Angle(line2,lineb1,radius=0.4,color=icts_highlight)
+        t8 = Angle(line2,lineb1,radius=0.4,color=ICTS_HIGHLIGHT)
         t1_label = MathTex(r"90^{\circ}-\theta",font_size=28,color=icts_grey).next_to(t1,UR,buff=0)
-        t2_label = MathTex(r"\theta",font_size=28,color=icts_highlight).next_to(t2,DOWN,buff=0.1)
+        t2_label = MathTex(r"\theta",font_size=28,color=ICTS_HIGHLIGHT).next_to(t2,DOWN,buff=0.1)
 
         csquare = Tex("$c^2$",color=BLACK).shift(DOWN*2.9 + LEFT)
         equals = Tex("$=$",color=BLACK).next_to(csquare)
@@ -80,8 +92,6 @@ class BhaskaraII_ICTS(Scene):
         bsquare = Tex("$b^2$",color=BLACK).next_to(plus)
         ictstifr = Tex("ICTS - TIFR",color=BLACK).shift(DOWN*2.9)
         pythogoras = VGroup(csquare,equals,asquare,plus,bsquare)
-        squareA = Polygon(A,A+RIGHT*b_length,A+RIGHT*b_length+UP*b_length,A+UP*b_length, color=icts_highlight,stroke_width=0,fill_opacity=0.5).shift(DOWN*a_length/2+RIGHT*a_length) 
-        squareB = Polygon(A,A+LEFT*a_length,A+UP*a_length+LEFT*a_length,A+UP*a_length,color=icts_grey,stroke_width=0,fill_opacity=0.5).shift(DOWN*a_length/2+RIGHT*a_length)
         self.play(FadeIn(triangle),FadeIn(triangle2),FadeIn(triangle3),FadeIn(triangle4),FadeIn(square_In))
         self.wait(1)
         self.play(FadeIn(line1),FadeIn(c_label))
