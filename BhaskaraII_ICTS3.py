@@ -1,4 +1,16 @@
+import os
+
+# Ensure Manim sees the correct TeX Live binaries
+os.environ["PATH"] = "/usr/local/texlive/2025/bin/x86_64-linux:" + os.environ["PATH"]
+os.environ["TEXMFCNF"] = "/usr/local/texlive/2025/texmf-dist/web2c"
+
 from manim import *
+from manim import config
+
+# Explicitly tell Manim which compiler and dvi converter to use
+config.tex_template.tex_compiler = "/usr/local/texlive/2025/bin/x86_64-linux/latex"
+config.tex_template.dvi_to_svg = "/usr/local/texlive/2025/bin/x86_64-linux/dvisvgm"
+
 
 class BhaskaraII_ICTS(Scene):
     def construct(self):
