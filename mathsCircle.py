@@ -19,10 +19,10 @@ class mathsCircle(Scene):
             organisers.add(org_tri)
         
         text = [Text("Organising Team",font_size=24).move_to(1.5*DOWN),
-                Text("Organising Team reaches out to potential leads for the session",font_size=24).move_to(2.5*DOWN),
-                Text("A lead is found at least a month before the session", font_size=24).move_to(1.75*DOWN),
+                Text("The organising team reaches out to potential leads for each session.",font_size=24).move_to(2.5*DOWN),
+                Text("A lead is confirmed at least a month in advance.", font_size=24).move_to(1.75*DOWN),
                 Text("This gives the lead time to observe a session,\n" "understand the students, and prepare an exploration sheet.",font_size=24).move_to(2.5*DOWN),
-                Text("The students recieve the exploration sheet about a week before the session.", font_size=24).move_to(2.5*DOWN),
+                Text("Students receive the exploration sheet about a week before the session.", font_size=24).move_to(2.5*DOWN),
                 Text("Maths Circle Students",font_size=24,color=GREEN).move_to(3*UP+2*RIGHT)]
         
         reach = VGroup()
@@ -95,11 +95,11 @@ class mathsCircle(Scene):
         self.play(MoveAlongPath(potential_leads[7],lead_path,rate_func=rate_functions.double_smooth,run_time=15), organisers[3].animate(run_time=8,rate_func=rate_functions.there_and_back_with_pause).move_to([0,1,0]),
         students[0].animate(run_time=2,rate_func=rate_functions.there_and_back_with_pause).next_to(students[12],direction=DOWN),
         students[8].animate(run_time=3,rate_func=rate_functions.there_and_back_with_pause,lag_ratio=0.5).next_to(students[2],direction=LEFT))
-        self.wait(3)
+        self.wait(1)
         self.play(FadeOut(text[3]))
         self.wait(1)
         self.play(FadeIn(text[4]),*[FadeOut(organiser) for organiser in organisers],*[FadeOut(table) for table in tables])
-        self.wait(3)
+        self.wait(10)
 
         
 
